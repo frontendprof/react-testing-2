@@ -2,21 +2,25 @@
 import React from "react";
 
 import SearchBar from "./SearchBar";
-import youtube from "../apis/utube";
 import utube from "../apis/utube";
 
 
 class App extends React.Component{
 
+    state= {videos:[]};
 
-    onTermSubmit=e=>{
+
+    onTermSubmit= async e=>{
         
-        utube.get('/search',{
+        const res=await utube.get('/search',{
             params:{
                 q:e
             }
-        })
-    }
+        });
+
+        this.setState({videos:res.data.items});
+
+    };
 
 
     render(){
@@ -24,6 +28,7 @@ class App extends React.Component{
         return (
         <div className="ui container">
             <SearchBar onFormSubmit={this.onTermSubmit}/>
+            There are {this.state.videos.length} videos.
         </div>
         );
 
