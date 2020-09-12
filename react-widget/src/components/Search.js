@@ -27,11 +27,18 @@ const Search=()=>{
             setResults(data.query.search);
         };
 
-        if(term){
-            
-            search();
-        }
+        const timeoutId=setTimeout(()=>{
 
+            if(term){
+                
+                search();
+            }
+
+        },1000);
+
+        return ()=>{
+            clearTimeout(timeoutId);
+        };
 
     },[term]);
 
@@ -39,6 +46,14 @@ const Search=()=>{
     const renderedResults=results.map((result)=>{
         return(
             <div key={result.pageid} className="item">
+
+                <div className="right floated content">
+                    <a 
+                    href={`https://en.wikipedia.org?curid=${result.pageid}`}
+                    className="ui button">Go</a>
+                </div>
+
+
                 <div className="content">
                     <div className="header">
                         {result.title}
