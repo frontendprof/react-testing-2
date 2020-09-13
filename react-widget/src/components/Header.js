@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import Link from "./Link";
 
 
 const Header=()=> {
@@ -9,24 +9,24 @@ const Header=()=> {
 
             <div className="ui secondary pointing menu">
                 
-                <a href="/" className="item">
+                <Link href="/" className="item">
                     Accordion
-                </a>
+                </Link>
 
 
-                <a href="/list" className="item">
+                <Link href="/list" className="item">
                     Search
-                </a>
+                </Link>
 
 
-                <a href="/dropdown" className="item">
+                <Link href="/dropdown" className="item">
                     Dropdown
-                </a>
+                </Link>
 
 
-                <a href="/translate" className="item">
+                <Link href="/translate" className="item">
                     Translate
-                </a>
+                </Link>
             </div>
             
         </div>
