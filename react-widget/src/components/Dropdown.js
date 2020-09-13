@@ -10,13 +10,21 @@ const Dropdown=({options,selected,onSelectedChange})=>{
     const ref=useRef();
 
     useEffect(()=>{
-        document.body.addEventListener("click",(e)=>{
+
+        const onBodyClick=(e)=>{
             if(ref.current.contains(e.target)){
                 return;
             }
 
             setOpen(false);
-        })
+        }
+
+        document.body.addEventListener("click",onBodyClick);
+
+        return ()=>{
+            document.body.removeEventListener("click",onBodyClick);
+        }
+        
     },[])
 
     const renderedOptions=options.map((option)=>{
@@ -38,7 +46,6 @@ const Dropdown=({options,selected,onSelectedChange})=>{
         );
 
     });
-        console.log(ref.current);
 
     return (
         <div ref={ref} className="ui form">
